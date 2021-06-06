@@ -1,0 +1,46 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [master, develop, feature/add-ci-pipeline]
+  push:
+    branches: [master, develop, feature/add-ci-pipeline]
+
+env:
+  PROJECT_NAME: PROJECT_NAME.sln
+  THRESHOLD: 98
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core Checkout Master
+        uses: actions/checkout@master
+        with:
+          dotnet-version: 5.0.101
+
+      - name: Check whether files are formatted
+        run: |
+          dotnet tool install -g dotnet-format
+          dotnet tool restore
+          dotnet format --check
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core Checkout Master
+        uses: actions/checkout@master
+        with:
+          dotnet-version: 5.0.1001
+
+      - name: Unit Tests
+        run: |
+          cd PROJECT_NAME.Domain.Tests
+          export THRESHOLD=98
+          export DOMAIN_FOLDER=PROJECT_NAME.Domain
+          export API_FOLDER=PROJECT_NAME.Api
+          dotnet test /p:CollectCoverage=true \
+                      /p:Threshold=${THRESHOLD}
