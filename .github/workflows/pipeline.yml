@@ -26,7 +26,7 @@ jobs:
           dotnet tool restore
           dotnet format --check
     
-    sonar:
+  sonar:
     needs: lint
     name: SonarQube Analysis
     runs-on: windows-latest
