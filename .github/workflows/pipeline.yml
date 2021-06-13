@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   pull_request:
-    branches: [master, develop, feature/add-ci-pipeline]
+    branches: [master, develop]
   push:
-    branches: [master, develop, feature/add-ci-pipeline]
+    branches: [master, develop]
 
 env:
   PROJECT_NAME: PROJECT_NAME.sln
