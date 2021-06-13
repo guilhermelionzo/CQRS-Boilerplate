@@ -64,9 +64,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"guilhermelionzo_CQRS-Boilerplate" /o:"guilhermelionzo" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"guilhermelionzo_CQRS-Boilerplate" /o:"guilhermelionzo" /d:sonar.login="${{env.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{env.SONAR_TOKEN}}"
 
   test:
     name: Tests
