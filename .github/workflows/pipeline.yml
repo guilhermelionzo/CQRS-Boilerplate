@@ -12,6 +12,7 @@ env:
 
 jobs:
   lint:
+    name: Format Analysis
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
@@ -64,10 +65,11 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"guilhermelionzo_CQRS-Boilerplate" /o:"guilhermelionzo" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          <your build command>
+          dotnet build
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
   test:
+    name: Tests
     needs: sonar
     runs-on: ubuntu-latest
     steps:
