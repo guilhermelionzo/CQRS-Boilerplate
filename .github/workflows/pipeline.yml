@@ -65,7 +65,7 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"guilhermelionzo_CQRS-Boilerplate" /o:"guilhermelionzo" /d:sonar.login="${{env.SONAR_TOKEN}}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{env.SONAR_TOKEN}}"
 
   test:
