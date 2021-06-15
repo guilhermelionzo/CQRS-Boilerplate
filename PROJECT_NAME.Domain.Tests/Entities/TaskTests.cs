@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using PROJECT_NAME.Domain.Entities;
-using PROJECT_NAME.Domain.Services;
+using PROJECT_NAME.Domain.ExternalServices;
 
 namespace PROJECT_NAME.Domain.Tests.Entities
 {
