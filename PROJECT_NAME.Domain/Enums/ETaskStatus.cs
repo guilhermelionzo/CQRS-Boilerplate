@@ -6,6 +6,7 @@ namespace PROJECT_NAME.Domain.Entities
         Created = 1,
         Started,
         Stopped,
-        Finished
+        Finished,
+        Resumed
     }
 }

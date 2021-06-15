@@ -5,6 +5,7 @@ namespace PROJECT_NAME.Domain.Entities
 {
     public class Task : Entity, IValidatable
     {
+        public Task() { }
         public Task(string name)
         {
             Name = name;
@@ -18,9 +19,9 @@ namespace PROJECT_NAME.Domain.Entities
         public DateTime FinishDate { get; private set; }
         public ETaskStatus Status { get; private set; }
 
-        public void Start()
+        public void Start(DateTime dateTime)
         {
-            StartDate = DateTime.UtcNow;
+            StartDate = dateTime;
             Status = ETaskStatus.Started;
         }
 
@@ -28,11 +29,15 @@ namespace PROJECT_NAME.Domain.Entities
         {
             Status = ETaskStatus.Stopped;
         }
-
-        public void Finish()
+        public void Resume()
         {
+            Status = ETaskStatus.Resumed;
+        }
+
+        public void Finish(DateTime dateTime)
+        {
+            FinishDate = dateTime;
             Status = ETaskStatus.Finished;
-            FinishDate = DateTime.UtcNow;
         }
 
         public void Validate()
