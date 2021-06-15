@@ -10,11 +10,10 @@ namespace PROJECT_NAME.Api
 {
     public class Program
     {
-        private static string _environmentName;
 
         public static void Main(string[] args)
         {
-            _environmentName = (string)Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").ToString();
+            string _environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").ToString();
 
             Console.WriteLine($"Environment name: {_environmentName}");
 
